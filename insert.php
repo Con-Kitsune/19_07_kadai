@@ -1,10 +1,14 @@
 <?php
 
 if(
-  !isset($_POST["name"]) || $_POST["name"]=="" ||
-  !isset($_POST["email"]) || $_POST["email"]=="" ||
-  !isset($_POST["naiyou"]) || $_POST["naiyou"]==""
+  !isset($_POST["Rider"]) || $_POST["Rider"]=="" ||
+  !isset($_POST["Circuit"]) || $_POST["Circuit"]=="" ||
+  !isset($_POST["Session"]) || $_POST["Session"]=="" ||
+  !isset($_POST["Manufacturer"]) || $_POST["Manufacturer"]=="" ||
+  !isset($_POST["Laptime"]) || $_POST["Laptime"]=="" ||
+  !isset($_POST["Comment"]) || $_POST["Comment"]==""
 ){
+
   exit("ParamError");
 }
 
@@ -13,9 +17,12 @@ if(
 //$name = filter_input( INPUT_GET, ","name" ); //こういうのもあるよ
 //$email = filter_input( INPUT_POST, "email" ); //こういうのもあるよ
 
-$name = $_POST["name"];
-$email = $_POST["email"];
-$naiyou = $_POST["naiyou"];
+$Rider = $_POST["Rider"];
+$Circuit = $_POST["Circuit"];
+$Session = $_POST["Session"];
+$Manufacturer = $_POST["Manufacturer"];
+$Laptime = $_POST["Laptime"];
+$Comment = $_POST["Comment"];
 
 
 //2. DB接続します
@@ -27,13 +34,16 @@ try {
 
 
 //３．データ登録SQL作成
-$sql = "INSERT INTO gs_an_tabel(id,name,email,naiyou,indate)
-VALUES(NULL,:a1,:a2,:a3,sysdate())";
+$sql = "INSERT INTO gs_bm_tabel(id,Rider,Circuit,Session,Manufacturer,Laptime,Comment,indate)
+VALUES(NULL,:a1,:a2,:a3,:a4,:a5,:a6,sysdate())";
 
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':a1', $name , PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':a2', $email,  PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$stmt->bindValue(':a3', $naiyou,  PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':a1', $Rider , PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':a2', $Circuit,  PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':a3', $Session,  PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':a4', $Manufacturer,  PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':a5', $Laptime,  PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':a6', $Comment,  PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
 $status = $stmt->execute();
 
 //４．データ登録処理後

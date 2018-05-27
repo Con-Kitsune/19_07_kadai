@@ -7,7 +7,7 @@ try {
 }
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT * FROM gs_an_tabel");
+$stmt = $pdo->prepare("SELECT * FROM gs_bm_tabel");
 $status = $stmt->execute();
 
 //３．データ表示
@@ -21,7 +21,7 @@ if($status==false) {
   //Selectデータの数だけ自動でループしてくれる
   //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){ 
-    $view .="<p>". $result["indate"]."-".$result["name"]."</p>";
+    $view .="<p>". $result["rider"]."-".$result["laptime"]."</p>";
   }
 
 }
