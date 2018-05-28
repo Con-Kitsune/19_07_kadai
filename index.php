@@ -12,7 +12,16 @@
 <header>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-    <div class="navbar-header"><a class="navbar-brand" href="select.php">データ一覧</a></div>
+    <div class="navbar-header"><a class="navbar-brand" href="select.php">Manufacturer別</a>
+    <a class="navbar-brand" href="select2.php">rider別</a>
+    <a class="navbar-brand" href="select3.php">Q1</a>
+    <a class="navbar-brand" href="select4.php">Q2</a>
+    <a class="navbar-brand" href="select3.php">Q3</a>
+    <a class="navbar-brand" href="select3.php">Q4</a>
+    <a class="navbar-brand" href="select3.php">P1</a>
+    <a class="navbar-brand" href="select3.php">P2</a>
+    <a class="navbar-brand" href="select3.php">RAC</a>
+    <a class="navbar-brand" href="select5.php">TEST</a></div>
     </div>
   </nav>
 </header>
