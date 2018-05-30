@@ -13,16 +13,16 @@
 <header>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-    <div class="navbar-header"><a class="navbar-brand" href="select.php">Manufacturer別</a>
-    <a class="navbar-brand" href="select2.php">rider別</a>
-    <a class="navbar-brand" href="select3.php">P1</a>
-    <a class="navbar-brand" href="select4.php">P2</a>
+    <div class="navbar-header"><a class="navbar-brand" href="select.php?source=top">Manufacturer別</a>
+    <a class="navbar-brand" href="select2.php?source=top">rider別</a>
+    <a class="navbar-brand" href="select3.php?source=top">P1</a>
+    <a class="navbar-brand" href="select4.php?source=top">P2</a>
     <a class="navbar-brand" href="select3.php"><span class="gray">P3</span></a>
     <a class="navbar-brand" href="select3.php"><span class="gray">P4</span></a>
     <a class="navbar-brand" href="select3.php"><span class="gray">Q1</span></a>
     <a class="navbar-brand" href="select3.php"><span class="gray">Q2</span></a>
     <a class="navbar-brand" href="select3.php"><span class="gray">WUP</span></a>
-    <a class="navbar-brand" href="select5.php">Graf</a></div>
+    <a class="navbar-brand" href="select5.php?source=top">Graf</a></div>
     </div>
   </nav>
 </header>

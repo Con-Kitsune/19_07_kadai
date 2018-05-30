@@ -119,7 +119,7 @@ if($status==false) {
 <link rel="stylesheet" href="css/range.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <style>div{padding: 10px;font-size:16px;}
- .MM{color:orange;} .VR{color:green;} .AD{color:red;}</style>
+ .MM{color:orange;} .VR{color:green;} .AD{color:red;}.gray{color:gray;}</style>
 </head>
 <body id="main">
 <!-- Head[Start] -->
@@ -127,7 +127,16 @@ if($status==false) {
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-      <a class="navbar-brand" href="index.php">データ登録</a>
+      <a class="navbar-brand" href="index.php?source=graf">データ登録</a>
+      <a class="navbar-brand" href="select.php?source=graf">manufacturer別</a>
+      <a class="navbar-brand" href="select2.php?source=glaf">rider別</a>
+      <a class="navbar-brand" href="select3.php?source=glaf">P1</a>
+      <a class="navbar-brand" href="select4.php?source=glaf">P2</a>
+      <a class="navbar-brand" href="select3.php"><span class="gray">P3</span></a>
+      <a class="navbar-brand" href="select3.php"><span class="gray">P4</span></a>
+      <a class="navbar-brand" href="select3.php"><span class="gray">Q1</span></a>
+      <a class="navbar-brand" href="select3.php"><span class="gray">Q2</span></a>
+      <a class="navbar-brand" href="select3.php"><span class="gray">WUP</span></a>
       </div>
     </div>
   </nav>
