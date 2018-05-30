@@ -7,7 +7,7 @@ try {
 }
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT manufacturer, MIN(laptime) FROM gs_bm_tabel GROUP BY manufacturer;");
+$stmt = $pdo->prepare("SELECT manufacturer, MIN(laptime) FROM gs_bm_tabel GROUP BY manufacturer ORDER BY MIN(laptime);");
 $status = $stmt->execute();
 
 //３．データ表示

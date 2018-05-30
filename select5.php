@@ -26,54 +26,82 @@ if($status==false) {
       if($result["Session"]=='Q1'){
         if($result["laptime"]!= null){
         $VR46[1]=$result["laptime"];
-        }else{
-          $VR46[1]=0;  
-        }
-      }
+        }else{$VR46[1]=0;}}
       if($result["Session"]=='Q2'){
         if($result["laptime"]!= null){
         $VR46[2]=$result["laptime"];
-        }else{
-          $VR46[2]=0;  
-        }
-      }
+        }else{$VR46[2]=0;}}
       if($result["Session"]=='Q3'){
         if($result["laptime"]!= null){
         $VR46[3]=$result["laptime"];
-        }else{
-          $VR46[3]=0;  
-        }
-      }
+        }else{$VR46[3]=0;}}
       if($result["Session"]=='Q4'){
         if($result["laptime"]!= null){
         $VR46[4]=$result["laptime"];
-        }else{
-          $VR46[4]=0;  
-        }
-      }
-      if($result["Session"]=='P1'){
-        if($result["laptime"]!= null){
-        $VR46[5]=$result["laptime"];
-        }else{
-          $VR46[5]=0;  
-        }
-      }
+        }else{$VR46[4]=0;}}
       if($result["Session"]=='P2'){
         if($result["laptime"]!= null){
-        $VR46[6]=$result["laptime"];
-        }else{
-          $VR46[6]=0;  
-        }
-      }
+        $VR46[5]=$result["laptime"];
+        }else{$VR46[5]=0;}}
       if($result["Session"]=='RAC'){
         if($result["laptime"]!= null){
-        $VR46[7]=$result["laptime"];
-        }else{
-          $VR46[7]=0;  
-        }
-      }
-      
+        $VR46[6]=$result["laptime"];
+        }else{$VR46[6]=0;}}
     }
+
+    if($result["rider"]== 'Marc MARQUEZ'){
+      if($result["Session"]=='Q1'){
+        if($result["laptime"]!= null){
+        $MM99[1]=$result["laptime"];
+        }else{$MM99[1]=0;}}
+      if($result["Session"]=='Q2'){
+        if($result["laptime"]!= null){
+        $MM99[2]=$result["laptime"];
+        }else{$MM99[2]=0;}}
+      if($result["Session"]=='Q3'){
+        if($result["laptime"]!= null){
+        $MM99[3]=$result["laptime"];
+        }else{$MM99[3]=0;}}
+      if($result["Session"]=='Q4'){
+        if($result["laptime"]!= null){
+        $MM99[4]=$result["laptime"];
+        }else{$MM99[4]=0;}}
+      if($result["Session"]=='P2'){
+        if($result["laptime"]!= null){
+        $MM99[5]=$result["laptime"];
+        }else{$MM99[5]=0;}}
+      if($result["Session"]=='RAC'){
+        if($result["laptime"]!= null){
+        $MM99[6]=$result["laptime"];
+        }else{$MM99[6]=0;}}
+    }
+    if($result["rider"]== 'Andrea DOVIZIOSO'){
+      if($result["Session"]=='Q1'){
+        if($result["laptime"]!= null){
+        $AD04[1]=$result["laptime"];
+        }else{$AD04[1]=0;}}
+      if($result["Session"]=='Q2'){
+        if($result["laptime"]!= null){
+        $AD04[2]=$result["laptime"];
+        }else{$AD04[2]=0;}}
+      if($result["Session"]=='Q3'){
+        if($result["laptime"]!= null){
+        $AD04[3]=$result["laptime"];
+        }else{$AD04[3]=0;}}
+      if($result["Session"]=='Q4'){
+        if($result["laptime"]!= null){
+        $AD04[4]=$result["laptime"];
+        }else{$AD04[4]=0;}}
+      if($result["Session"]=='P2'){
+        if($result["laptime"]!= null){
+        $AD04[5]=$result["laptime"];
+        }else{$AD04[5]=0;}}
+      if($result["Session"]=='RAC'){
+        if($result["laptime"]!= null){
+        $AD04[6]=$result["laptime"];
+        }else{$AD04[6]=0;}}
+    }
+
   }
 
 }
@@ -86,11 +114,12 @@ if($status==false) {
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>フリーアンケート表示</title>
 <link rel="stylesheet" href="css/range.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<style>div{padding: 10px;font-size:16px;}</style>
+<style>div{padding: 10px;font-size:16px;}
+ .MM{color:orange;} .VR{color:green;} .AD{color:red;}</style>
 </head>
 <body id="main">
 <!-- Head[Start] -->
@@ -107,15 +136,22 @@ if($status==false) {
 
 <!-- Main[Start] -->
 <div>
+  <p class="MM">■Marc MARQUEZ</p>
+  <p class="VR">■Valentino Rossi</p>
+  <p class="AD">■Andrea DOVIZIOSO</p>
+
     <canvas id="mycanvas1" height="500" width="1400"></canvas>
 </div>
 <!-- Main[End] -->
 
 </body>
 <script>
-        let VR=["<?= $VR46[1]; ?>","<?= $VR46[2]; ?>","<?= $VR46[3]; ?>","<?= $VR46[4]; ?>",null,"<?= $VR46[6]; ?>","<?= $VR46[7]; ?>"];
+        let VR=["<?= $VR46[1]; ?>","<?= $VR46[2]; ?>","<?= $VR46[3]; ?>","<?= $VR46[4]; ?>","<?= $VR46[5]; ?>","<?= $VR46[6]; ?>"];
+        let MM=["<?= $MM99[1]; ?>","<?= $MM99[2]; ?>","<?= $MM99[3]; ?>","<?= $MM99[4]; ?>","<?= $MM99[5]; ?>","<?= $MM99[6]; ?>"];
+        let AD=["<?= $AD04[1]; ?>","<?= $AD04[2]; ?>","<?= $AD04[3]; ?>","<?= $AD04[4]; ?>","<?= $AD04[5]; ?>","<?= $AD04[6]; ?>"];
         let lineChartData = {
-      labels : ["1","2","3","4","5","6","7"],
+          type:"line",
+      labels : ["FP1","FP2","FP3","FP4","Q2","WUP"],
       datasets : [
          {
             label: "VR46",
@@ -125,13 +161,34 @@ if($status==false) {
             pointStrokeColor : "white",        // ドットの枠線色
             pointHighlightFill : "yellow",     // マウスが載った際のドットの塗りつぶし色
             pointHighlightStroke : "green",    // マウスが載った際のドットの枠線色
-            data : [VR[0],VR[1],VR[2],VR[3],VR[4],VR[5],VR[6]]     // 各点の値
+            data : [VR[0],VR[1],VR[2],VR[3],VR[4],VR[5]]     // 各点の値
          },
-         
+                  {
+            label: "MM99",
+            fillColor : "rgba(255,165,00,0.2)", // 線から下端までを塗りつぶす色
+            strokeColor : "rgba(247,193,71,1)", // 折れ線の色
+            pointColor : "rgba(255,165,00,1)",  // ドットの塗りつぶし色
+            pointStrokeColor : "white",        // ドットの枠線色
+            pointHighlightFill : "yellow",     // マウスが載った際のドットの塗りつぶし色
+            pointHighlightStroke : "green",    // マウスが載った際のドットの枠線色
+            data : [MM[0],MM[1],MM[2],MM[3],MM[4],MM[5]]     // 各点の値
+         },
+         {
+            label: "AD04",
+            fillColor : "rgba(255,79,25,0.2)", // 線から下端までを塗りつぶす色
+            strokeColor : "rgba(255,98,50,1)", // 折れ線の色
+            pointColor : "rgba(255,79,25,1)",  // ドットの塗りつぶし色
+            pointStrokeColor : "white",        // ドットの枠線色
+            pointHighlightFill : "yellow",     // マウスが載った際のドットの塗りつぶし色
+            pointHighlightStroke : "green",    // マウスが載った際のドットの枠線色
+            data : [AD[0],AD[1],AD[2],AD[3],AD[4],AD[5]]     // 各点の値
+         },
       ]
 
    }
 
         let myChart1 = new Chart(document.getElementById("mycanvas1").getContext("2d")).Line(lineChartData);
+
+
    </script>
 </html>

@@ -7,7 +7,7 @@ try {
 }
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT rider, MIN(laptime) FROM gs_bm_tabel GROUP BY rider;");
+$stmt = $pdo->prepare("SELECT rider, MIN(laptime) FROM gs_bm_tabel GROUP BY rider ORDER BY MIN(laptime);");
 $status = $stmt->execute();
 
 //３．データ表示

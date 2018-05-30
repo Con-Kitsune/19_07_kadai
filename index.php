@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>データ登録</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <style>div{padding: 10px;font-size:16px;}</style>
+  <style>div{padding: 10px;font-size:16px;}
+    .gray{color:gray;}</style>
 </head>
 <body>
 
@@ -14,14 +15,14 @@
     <div class="container-fluid">
     <div class="navbar-header"><a class="navbar-brand" href="select.php">Manufacturer別</a>
     <a class="navbar-brand" href="select2.php">rider別</a>
-    <a class="navbar-brand" href="select3.php">Q1</a>
-    <a class="navbar-brand" href="select4.php">Q2</a>
-    <a class="navbar-brand" href="select3.php">Q3</a>
-    <a class="navbar-brand" href="select3.php">Q4</a>
     <a class="navbar-brand" href="select3.php">P1</a>
-    <a class="navbar-brand" href="select3.php">P2</a>
-    <a class="navbar-brand" href="select3.php">RAC</a>
-    <a class="navbar-brand" href="select5.php">TEST</a></div>
+    <a class="navbar-brand" href="select4.php">P2</a>
+    <a class="navbar-brand" href="select3.php"><span class="gray">P3</span></a>
+    <a class="navbar-brand" href="select3.php"><span class="gray">P4</span></a>
+    <a class="navbar-brand" href="select3.php"><span class="gray">Q1</span></a>
+    <a class="navbar-brand" href="select3.php"><span class="gray">Q2</span></a>
+    <a class="navbar-brand" href="select3.php"><span class="gray">WUP</span></a>
+    <a class="navbar-brand" href="select5.php">Graf</a></div>
     </div>
   </nav>
 </header>
@@ -31,16 +32,17 @@
 <form method="post" action="insert.php">
   <div class="jumbotron">
    <fieldset>
-    <legend>フリーアンケート</legend>
+    <legend> <img src="img/motogp.svg" alt="" height=133 Width=243>MotoGP Data Analytics</legend>
+
      <label>Rider：<input type="text" name="Rider"></label><br>
      <label>Circuit：<input type="text" name="Circuit"></label><br>
-     <label>Session：<input type="radio" name="Session" value="Q1">Q1
-     <input type="radio" name="Session" value="Q2">Q2
-     <input type="radio" name="Session" value="Q3">Q3
-     <input type="radio" name="Session" value="Q4">Q4
-     <input type="radio" name="Session" value="P1">P1
-     <input type="radio" name="Session" value="P2">P2
-     <input type="radio" name="Session" value="RAC">RAC
+     <label>Session：<input type="radio" name="Session" value="Q1">FP1
+     <input type="radio" name="Session" value="Q2">FP2
+     <input type="radio" name="Session" value="Q3">FP3
+     <input type="radio" name="Session" value="Q4">FP4
+     <input type="radio" name="Session" value="P1">Q1
+     <input type="radio" name="Session" value="P2">Q2
+     <input type="radio" name="Session" value="RAC">WUP
      <br>
      <label>Manufacturer：<select name="Manufacturer">
         <option value="HONDA">HONDA</option>
@@ -52,7 +54,7 @@
         </select></label><br>
      <label>Laptime：<input type="text" name="Laptime"></label><br>
      <label><textArea name="Comment" rows="4" cols="40"></textArea></label><br>
-     <input type="submit" value="送信">
+     <input type="submit" value="Subit">
     </fieldset>
   </div>
 </form>
