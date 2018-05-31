@@ -105,6 +105,27 @@ if($status==false) {
   }
 
 }
+
+//移行疑似GA
+$source = $_GET["source"];
+
+//2. DB接続します
+try {
+  $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
+} catch (PDOException $e) {
+  exit('dbConnectError:'.$e->getMessage());
+}
+
+//３．データ登録SQL作成
+$sql = "INSERT INTO gs_bm2_table(id,refarrer,indate)
+VALUES(NULL,:a1,sysdate())";
+
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':a1', $source , PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$status = $stmt->execute();
+
+
+
 ?>
 
 
@@ -129,14 +150,15 @@ if($status==false) {
       <div class="navbar-header">
       <a class="navbar-brand" href="index.php?source=graf">データ登録</a>
       <a class="navbar-brand" href="select.php?source=graf">manufacturer別</a>
-      <a class="navbar-brand" href="select2.php?source=glaf">rider別</a>
-      <a class="navbar-brand" href="select3.php?source=glaf">P1</a>
-      <a class="navbar-brand" href="select4.php?source=glaf">P2</a>
+      <a class="navbar-brand" href="select2.php?source=graf">rider別</a>
+      <a class="navbar-brand" href="select3.php?source=graf">P1</a>
+      <a class="navbar-brand" href="select4.php?source=graf">P2</a>
       <a class="navbar-brand" href="select3.php"><span class="gray">P3</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">P4</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">Q1</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">Q2</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">WUP</span></a>
+    <a class="navbar-brand" href="select6.php?source=graf">Refarrer(疑似Google Analytics)</a>
       </div>
     </div>
   </nav>

@@ -25,6 +25,27 @@ if($status==false) {
   }
 
 }
+
+//移行疑似GA
+$source = $_GET["source"];
+
+//2. DB接続します
+try {
+  $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
+} catch (PDOException $e) {
+  exit('dbConnectError:'.$e->getMessage());
+}
+
+//３．データ登録SQL作成
+$sql = "INSERT INTO gs_bm2_table(id,refarrer,indate)
+VALUES(NULL,:a1,sysdate())";
+
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':a1', $source , PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$status = $stmt->execute();
+
+
+
 ?>
 
 
@@ -55,7 +76,8 @@ if($status==false) {
       <a class="navbar-brand" href="select3.php"><span class="gray">Q1</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">Q2</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">WUP</span></a>
-      <a class="navbar-brand" href="select5.php?source=P2">Graf</a></div>
+      <a class="navbar-brand" href="select5.php?source=P2">Graf</a>
+    <a class="navbar-brand" href="select6.php?source=P2">Refarrer(疑似Google Analytics)</a></div>
       </div>
     </div>
   </nav>
