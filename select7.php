@@ -1,4 +1,22 @@
 <?php
+
+// if(
+//   !isset($_POST["kanri_flg"]) || $_POST["kanri_flg"]=="" 
+// ){
+
+//   exit("ParamError");
+//   // $kanri_flg = $_POST["kanri_flg"];
+// }
+
+
+//1. POSTデータ取得
+//$name = filter_input( INPUT_GET, ","name" ); //こういうのもあるよ
+//$email = filter_input( INPUT_POST, "email" ); //こういうのもあるよ
+
+$kanri_flg = $_POST["kanri_flg"];
+
+
+
 //1.  DB接続します
 try {
   $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
@@ -7,7 +25,7 @@ try {
 }
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT rider, MIN(laptime) FROM gs_bm_tabel GROUP BY rider ORDER BY MIN(laptime);");
+$stmt = $pdo->prepare("SELECT * FROM gs_bm_tabel;");
 $status = $stmt->execute();
 
 //３．データ表示
@@ -20,11 +38,21 @@ if($status==false) {
 }else{
   //Selectデータの数だけ自動でループしてくれる
   //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
+  $i = '';
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){ 
-    $view .="<p>". $result["rider"]."-".$result["MIN(laptime)"]."</p>";
+      $view .="<p>";
+      $view .='<a href="detail.php?id='.$result["id"].'">';
+      $view .=$result["rider"]."-".$result["laptime"];
+      $view .="</a>";
+      $view .=' ';
+      $view .='<a href="delete.php?id='.$result["id"].'">';
+      $view .='［削除］';
+      $view .='</a>';
+      $view .="</p>";
+  
   }
-
 }
+
 // //移行疑似GA
 // $source = $_GET["source"];
 
@@ -53,12 +81,13 @@ if($status==false) {
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>フリーアンケート表示</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>データ一覧</title>
 <link rel="stylesheet" href="css/range.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <style>div{padding: 10px;font-size:16px;}
-    .gray{color:gray;}</style>
+ .MM{color:orange;} .VR{color:green;} .AD{color:red;}.gray{color:gray;}</style>
 </head>
 <body id="main">
 <!-- Head[Start] -->
@@ -66,18 +95,23 @@ if($status==false) {
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-      <a class="navbar-brand" href="index.php?source=rider">データ登録</a>
-      <a class="navbar-brand" href="select.php?source=rider">manufacturer別</a>
-      <a class="navbar-brand" href="select3.php?source=rider">P1</a>
-      <a class="navbar-brand" href="select4.php?source=rider">P2</a>
+      <a class="navbar-brand" href="index.php?source=all">データ登録</a>
+      <a class="navbar-brand" href="select.php?source=all">manufacturer別</a>
+      <a class="navbar-brand" href="select2.php?source=all">rider別</a>
+      <a class="navbar-brand" href="select3.php?source=all">P1</a>
+      <a class="navbar-brand" href="select4.php?source=all">P2</a>
       <a class="navbar-brand" href="select3.php"><span class="gray">P3</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">P4</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">Q1</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">Q2</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">WUP</span></a>
-      <a class="navbar-brand" href="select5.php?source=rider">Graf</a>
-    <!-- <a class="navbar-brand" href="select6.php?source=rider">Refarrer(疑似Google Analytics)</a></div> -->
-
+      <a class="navbar-brand" href="select5.php?source=all">Graf</a>
+      <?php
+      if($kanri_flg == 1){
+        echo '<a class="navbar-brand" href="select_user.php?source=all">USER管理</a>';
+      }
+      ?>
+      <!-- <a class="navbar-brand" href="select_user.php?source=all">USER管理</a> -->
       </div>
     </div>
   </nav>
@@ -86,9 +120,11 @@ if($status==false) {
 
 <!-- Main[Start] -->
 <div>
-    <div class="container jumbotron"><?=$view?></div>
+
+      <div class="container jumbotron"><?=$view?></div>
 </div>
 <!-- Main[End] -->
 
 </body>
+
 </html>

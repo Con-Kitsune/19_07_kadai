@@ -22,7 +22,7 @@ if($status==false) {
   //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
   $i = '';
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){ 
-    if($result["rider"]== 'Valentino Rossi'){
+    if($result["rider"]== 'ROSSI'){
       if($result["Session"]=='Q1'){
         if($result["laptime"]!= null){
         $VR46[1]=$result["laptime"];
@@ -49,7 +49,7 @@ if($status==false) {
         }else{$VR46[6]=0;}}
     }
 
-    if($result["rider"]== 'Marc MARQUEZ'){
+    if($result["rider"]== 'MARQUEZ'){
       if($result["Session"]=='Q1'){
         if($result["laptime"]!= null){
         $MM99[1]=$result["laptime"];
@@ -75,7 +75,7 @@ if($status==false) {
         $MM99[6]=$result["laptime"];
         }else{$MM99[6]=0;}}
     }
-    if($result["rider"]== 'Andrea DOVIZIOSO'){
+    if($result["rider"]== 'DOVIZIOSO'){
       if($result["Session"]=='Q1'){
         if($result["laptime"]!= null){
         $AD04[1]=$result["laptime"];
@@ -106,23 +106,23 @@ if($status==false) {
 
 }
 
-//移行疑似GA
-$source = $_GET["source"];
+// //移行疑似GA
+// $source = $_GET["source"];
 
-//2. DB接続します
-try {
-  $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
-} catch (PDOException $e) {
-  exit('dbConnectError:'.$e->getMessage());
-}
+// //2. DB接続します
+// try {
+//   $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
+// } catch (PDOException $e) {
+//   exit('dbConnectError:'.$e->getMessage());
+// }
 
-//３．データ登録SQL作成
-$sql = "INSERT INTO gs_bm2_table(id,refarrer,indate)
-VALUES(NULL,:a1,sysdate())";
+// //３．データ登録SQL作成
+// $sql = "INSERT INTO gs_bm2_table(id,refarrer,indate)
+// VALUES(NULL,:a1,sysdate())";
 
-$stmt = $pdo->prepare($sql);
-$stmt->bindValue(':a1', $source , PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$status = $stmt->execute();
+// $stmt = $pdo->prepare($sql);
+// $stmt->bindValue(':a1', $source , PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+// $status = $stmt->execute();
 
 
 
@@ -158,7 +158,7 @@ $status = $stmt->execute();
       <a class="navbar-brand" href="select3.php"><span class="gray">Q1</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">Q2</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">WUP</span></a>
-    <a class="navbar-brand" href="select6.php?source=graf">Refarrer(疑似Google Analytics)</a>
+    <!-- <a class="navbar-brand" href="select6.php?source=graf">Refarrer(疑似Google Analytics)</a> -->
       </div>
     </div>
   </nav>

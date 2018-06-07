@@ -12,27 +12,27 @@
 // 各ページの滞在時間はPHPでの取得となりますでしょうか？
 // ユーザーIDごとにデータを格納したいのですが、IPアドレスなどを取得する方法はありますか？
 
-//移行疑似GA
-if($_GET["source"]=null){
- return;
-}else{
-$source = $_GET["source"];
+// //移行疑似GA
+// if($_GET["source"]=null){
+//  return;
+// }else{
+// $source = $_GET["source"];
 
 //2. DB接続します
-try {
-  $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
-} catch (PDOException $e) {
-  exit('dbConnectError:'.$e->getMessage());
-}
+// try {
+//   $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
+// } catch (PDOException $e) {
+//   exit('dbConnectError:'.$e->getMessage());
+// }
 
-//３．データ登録SQL作成
-$sql = "INSERT INTO gs_bm2_table(id,refarrer,indate)
-VALUES(NULL,:a1,sysdate())";
+// //３．データ登録SQL作成
+// $sql = "INSERT INTO gs_bm2_table(id,refarrer,indate)
+// VALUES(NULL,:a1,sysdate())";
 
-$stmt = $pdo->prepare($sql);
-$stmt->bindValue(':a1', $source , PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-$status = $stmt->execute();
-}
+// $stmt = $pdo->prepare($sql);
+// $stmt->bindValue(':a1', $source , PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+// $status = $stmt->execute();
+// }
 
 ?>
 <!DOCTYPE html>
@@ -60,7 +60,8 @@ $status = $stmt->execute();
     <a class="navbar-brand" href="select3.php"><span class="gray">Q2</span></a>
     <a class="navbar-brand" href="select3.php"><span class="gray">WUP</span></a>
     <a class="navbar-brand" href="select5.php?source=top">Graf</a>
-    <a class="navbar-brand" href="select6.php?source=top">Refarrer(疑似Google Analytics)</a></div>
+    <!-- <a class="navbar-brand" href="select6.php?source=top">Refarrer(疑似Google Analytics)</a> -->
+    <a class="navbar-brand" href="select7.php?source=top">all data</a></div>
     </div>
   </nav>
 </header>
