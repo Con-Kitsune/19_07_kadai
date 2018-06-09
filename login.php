@@ -35,6 +35,7 @@
     <!-- <div class="container-fluid">
     <div class="navbar-header"> -->
     <a class="navbar-brand" href="login.php">login</a>
+    <a class="navbar-brand" href="select7.php">data閲覧</a>
     <!-- </div>
     </div> -->
   </nav>
@@ -50,9 +51,11 @@
         <img src="img/login.png" width=30%>
         <form method="post" action="login_act.php">
         <label>Login ID：<input type="text" name="lid" ></label><br>
-        <label>Login PW：<input type="text" name="lpw" ></label><br>
+        <label>Login PW：<input type="password" name="lpw" ></label><br>
         <input class="btn" type="submit" value="Submit">
         </form>
+        <P>ID:test PW:test =一般ユーザー</P>
+        <P>ID:test2 PW:test2 =スーパー管理者</P>
         </section>
      </div>
   <!-- </div> -->

@@ -1,29 +1,14 @@
 <?php
 
-// if(
-//   !isset($_POST["kanri_flg"]) || $_POST["kanri_flg"]=="" 
-// ){
+session_start();
+include("functions.php");
 
-//   exit("ParamError");
-//   // $kanri_flg = $_POST["kanri_flg"];
-// }
-
-
-//1. POSTデータ取得
-//$name = filter_input( INPUT_GET, ","name" ); //こういうのもあるよ
-//$email = filter_input( INPUT_POST, "email" ); //こういうのもあるよ
-
-$kanri_flg = $_POST["kanri_flg"];
-
-
-
-//1.  DB接続します
-try {
-  $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
-} catch (PDOException $e) {
-  exit('dbConnectError'.$e->getMessage());
+if(!isset($_SESSION["name"])){
+$_SESSION["name"] = "ゲスト";
 }
-
+// chk_ssid();
+//1.  DB接続します
+$pdo = db_con();
 //２．データ登録SQL作成
 $stmt = $pdo->prepare("SELECT * FROM gs_bm_tabel;");
 $status = $stmt->execute();
@@ -92,10 +77,20 @@ if($status==false) {
 <body id="main">
 <!-- Head[Start] -->
 <header>
+<p>ようこそ <?=$_SESSION["name"] ?>さん</p>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-      <a class="navbar-brand" href="index.php?source=all">データ登録</a>
+      <?php if(!isset($_SESSION["kanri_flg"])){
+      echo '<a class="navbar-brand" href="login.php">LOGIN</a>';
+      }else{
+      echo '<a class="navbar-brand" href="logout.php">LOGOUT</a>';
+      } ?>
+      <?php if(!isset($_SESSION["kanri_flg"])){
+    }else{
+      echo '<a class="navbar-brand" href="index.php">データ登録</a>';
+      }
+      ?>
       <a class="navbar-brand" href="select.php?source=all">manufacturer別</a>
       <a class="navbar-brand" href="select2.php?source=all">rider別</a>
       <a class="navbar-brand" href="select3.php?source=all">P1</a>
@@ -105,9 +100,14 @@ if($status==false) {
       <a class="navbar-brand" href="select3.php"><span class="gray">Q1</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">Q2</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">WUP</span></a>
-      <a class="navbar-brand" href="select5.php?source=all">Graf</a>
+      <?php if(!isset($_SESSION["kanri_flg"])){
+      }else{
+      echo '<a class="navbar-brand" href="select5.php">Graf</a>';
+      }
+      ?>
       <?php
-      if($kanri_flg == 1){
+      if(!isset($_SESSION["kanri_flg"])){
+      }elseif($_SESSION["kanri_flg"] == 0){
         echo '<a class="navbar-brand" href="select_user.php?source=all">USER管理</a>';
       }
       ?>

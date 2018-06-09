@@ -1,4 +1,10 @@
 <?php
+session_start();
+//0.外部ファイル読み込み
+include("functions.php");
+
+// session処理
+chk_ssid();
 
 if(
   !isset($_POST["name"]) || $_POST["name"]=="" ||

@@ -1,12 +1,11 @@
 <?php
 
 $id = $_GET["id"];
+session_start();
+include("functions.php");
+chk_ssid();
 //1.  DB接続します
-try {
-  $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
-} catch (PDOException $e) {
-  exit('dbConnectError'.$e->getMessage());
-}
+$pdo = db_con();
 
 //２．データ登録SQL作成
 $stmt = $pdo->prepare("SELECT * FROM gs_user_table WHERE id=:id");
@@ -27,24 +26,6 @@ if($status==false) {
 
 }
 
-// //移行疑似GA
-// $source = $_GET["source"];
-
-// //2. DB接続します
-// try {
-//   $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
-// } catch (PDOException $e) {
-//   exit('dbConnectError:'.$e->getMessage());
-// }
-
-// //３．データ登録SQL作成
-// $sql = "INSERT INTO gs_bm2_table(id,refarrer,indate)
-// VALUES(NULL,:a1,sysdate())";
-
-// $stmt = $pdo->prepare($sql);
-// $stmt->bindValue(':a1', $source , PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-// $status = $stmt->execute();
-
 ?>
 
 
@@ -61,6 +42,7 @@ if($status==false) {
 
 <!-- Head[Start] -->
 <header>
+<p>ようこそ <?=$_SESSION["name"] ?>さん</p>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
     <div class="navbar-header"><a class="navbar-brand" href="select.php?source=top">Manufacturer別</a>

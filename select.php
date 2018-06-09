@@ -1,10 +1,12 @@
 <?php
-//1.  DB接続します
-try {
-  $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
-} catch (PDOException $e) {
-  exit('dbConnectError'.$e->getMessage());
+session_start();
+include("functions.php");
+
+if(!isset($_SESSION["name"])){
+$_SESSION["name"] = "ゲスト";
 }
+//1.  DB接続します
+$pdo = db_con();
 
 //２．データ登録SQL作成
 $stmt = $pdo->prepare("SELECT manufacturer, MIN(laptime) FROM gs_bm_tabel GROUP BY manufacturer ORDER BY MIN(laptime);");
@@ -26,27 +28,7 @@ if($status==false) {
 
 }
 
-// //移行疑似GA
-// if($_GET["source"]=null){
-//   return;
-// }else{
-// $source = $_GET["source"];
 
-// //2. DB接続します
-// try {
-//   $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
-// } catch (PDOException $e) {
-//   exit('dbConnectError:'.$e->getMessage());
-// }
-
-// //３．データ登録SQL作成
-// $sql = "INSERT INTO gs_bm2_table(id,refarrer,indate)
-// VALUES(NULL,:a1,sysdate())";
-
-// $stmt = $pdo->prepare($sql);
-// $stmt->bindValue(':a1', $source , PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
-// $status = $stmt->execute();
-// }
 
 
 
@@ -68,10 +50,20 @@ if($status==false) {
 <body id="main">
 <!-- Head[Start] -->
 <header>
+<p>ようこそ <?=$_SESSION["name"] ?>さん</p>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-      <a class="navbar-brand" href="index.php?source=manufacturer">データ登録</a>
+      <?php if(!isset($_SESSION["kanri_flg"])){
+      echo '<a class="navbar-brand" href="login.php">LOGIN</a>';
+      }else{
+      echo '<a class="navbar-brand" href="logout.php">LOGOUT</a>';
+      } ?>
+      <?php if(!isset($_SESSION["kanri_flg"])){
+    }else{
+      echo '<a class="navbar-brand" href="index.php">データ登録</a>';
+      }
+      ?>
       <a class="navbar-brand" href="select2.php?source=manufacturer">rider別</a>
       <a class="navbar-brand" href="select3.php?source=manufacturer">P1</a>
       <a class="navbar-brand" href="select4.php?source=manufacturer">P2</a>
@@ -80,7 +72,18 @@ if($status==false) {
       <a class="navbar-brand" href="select3.php"><span class="gray">Q1</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">Q2</span></a>
       <a class="navbar-brand" href="select3.php"><span class="gray">WUP</span></a>
-      <a class="navbar-brand" href="select5.php?source=manufacturer">Graf</a>
+      <?php if(!isset($_SESSION["kanri_flg"])){
+      }else{
+      echo '<a class="navbar-brand" href="select5.php">Graf</a>';
+      }
+      ?>
+      <a class="navbar-brand" href="select7.php?source=top">all data</a>
+      <?php
+      if(!isset($_SESSION["kanri_flg"])){
+      }elseif($_SESSION["kanri_flg"] == 0){
+        echo '<a class="navbar-brand" href="select_user.php?source=all">USER管理</a>';
+      }
+      ?>
     <!-- <a class="navbar-brand" href="select6.php?source=manufacturer">Refarrer(疑似Google Analytics)</a> -->
     </div>
       </div>
